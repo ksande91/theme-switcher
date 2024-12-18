@@ -1,0 +1,64 @@
+* {
+  background-color: transparent;
+  text-color: White;
+  border-color: White;
+  font: "Figtree 13";
+  border-radius: 10px;
+}
+
+window {
+  width: 20%;
+  padding: 10px;
+  background-color: #000000BF;
+  border-color: White;
+  border: 1px solid 1px 1px;
+}
+
+inputbar {
+  children: [ "entry"];
+  spacing: 10px;
+}
+
+listview {
+  padding: 10px;
+  spacing: 5px;
+  lines: 5;
+  border-color: White;
+}
+
+entry {
+  placeholder: "Search wallpaper";
+  placeholder-color: #888888FF;
+  padding: 8px 10px;
+}
+
+prompt {
+  padding: 8px 10px;
+}
+
+element {
+  padding: 1px 1px;
+  border-color: White;
+}
+
+element selected {
+  background-color: White;
+}
+
+element-icon {
+  size: 4em;
+  horizontal-align: 0.5;
+}
+
+element-text {
+  background-color: rgba ( 0, 0, 0, 0 % );
+  highlight: inherit;
+  cursor: inherit;
+  size: 8em;
+  padding: 10px;
+  vertical-align: 0.5;
+}
+
+element-text selected {
+  text-color: Black;
+}
