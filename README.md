@@ -28,12 +28,11 @@ The following dependencies are requried:
 3. Run the script:
 
     ```bash
-    ./wallpaper-switcher.sh
+    ./wallpaper-switcher.sh /path/to/image/folder
     ```
 
 ## Configuration
 
-- Update `IMAGE_DIR` in the script if your wallpapers are in a different folder.
 - Customize the `rofi` theme in `config/theme-switcher.rasi`.
 
 ## License
