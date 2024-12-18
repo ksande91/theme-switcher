@@ -38,7 +38,7 @@ for image in "${images[@]}"; do
 done
 
 # Display options using rofi
-selected=$(echo -e "$options" | rofi -dmenu -show-icons -theme "./config/config.rasi" -lines "${#images[@]}")
+selected=$(echo -e "$options" | rofi -dmenu -show-icons -theme "$(dirname "$(realpath "$0")")/config/config.rasi" -lines "${#images[@]}")
 
 # Exit if nothing is selected
 if [ -z "$selected" ]; then
