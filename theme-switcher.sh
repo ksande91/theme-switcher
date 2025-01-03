@@ -57,10 +57,38 @@ done
 if [ -n "$selected_image" ]; then
   wal -n -i "$selected_image"
   swww img "$(< "${HOME}/.cache/wal/wal")"
+
+  # Get the path from wal cache (where the final wallpaper path is stored)
+  wallpaper_path="$(< "${HOME}/.cache/wal/wal")"
+
+  # Check if the wallpaper path exists (just in case)
+  if [ -f "$wallpaper_path" ]; then
+    # Update Hyprlock background configuration
+    hyprlock_conf="$HOME/.config/hypr/hyprlock.conf"
+
+    # Ensure Hyprlock config exists
+    if [ ! -f "$hyprlock_conf" ]; then
+      echo "Error: Hyprlock config file not found."
+      exit 1
+    fi
+
+    # Check if the background block exists
+    if grep -q "^background {" "$hyprlock_conf"; then
+      # Add the new path inside the existing background block
+      sed -i "/^background {/,/^}/ s|^}|    path = $wallpaper_path\n}|" "$hyprlock_conf"
+    else
+      # If the background block doesn't exist, create it
+      echo -e "\nbackground {\n    monitor = \n    path = $wallpaper_path\n}" >> "$hyprlock_conf"
+    fi
+
+    # Optionally, reload or restart Hyprlock if needed (uncomment the next line if applicable)
+    # pkill -HUP hyprlock
+
+    echo "Hyprlock background updated to: $wallpaper_path"
+  else
+    notify-send "Error: Wallpaper file not found at $wallpaper_path"
+  fi
 else
   notify-send "Error: Image not found!"
   exit 1
 fi
-
-# Clear terminal instead of reset
-clear
